@@ -1,0 +1,47 @@
+@CHARSET "EUC-KR";
+
+
+input[value="a"] {
+	color:red;
+	font-weight:bold;
+}
+
+input[type="submit"]
+{
+color:gray;
+font-weight:bold;
+}
+
+.h1 {
+	color: orange;
+}
+
+section[id] {
+	color: pink;
+}
+
+header>section.h1>nav+nav
+{
+color:green;
+font-weight:bold;
+}
+
+#lecture-search-form input[type="text"]
+{
+	color:red;
+}
+
+#main-menu li a
+{
+	color:red;
+}
+
+#main-menu li:first-child a
+{
+	color:hotpink;
+}
+
+#main-menu li:first-child+li a
+{
+	color:green;
+}

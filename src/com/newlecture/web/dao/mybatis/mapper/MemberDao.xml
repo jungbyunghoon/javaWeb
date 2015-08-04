@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.MemberDao"> 
+	
+	<select id="getMember" parameterType="string" resultType="com.newlecture.web.vo.Member">
+		SELECT * FROM MEMBERS WHERE UID=#{uid}
+	</select>
+	
+	<select id="getMembers" resultType="com.newlecture.web.vo.Member">
+		SELECT * FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY REGDATE DESC) NUM, 
+				MEMBERS.* FROM MEMBERS 
+					WHERE ${field} LIKE '%${query}%') N 
+		WHERE N.NUM BETWEEN ((${page} - 1) * 20 + 1) AND (${page} * 20)
+	</select>
+	
+	<insert id="addMember" parameterType="com.newlecture.web.vo.Member">
+		INSERT INTO MEMBERS (
+			UID, NAME, PWD, NICNAME, PHOTO, GENDER, 
+			BIRTH, ISLUNAR,	PHONE, EMAIL, ZIPCODE, ZIPSEQ, 
+			ADDRESS, DEFAULTROLE, REGIP, REGENV, 
+			PWDMODIFYKEY, REGADMIN, GUUID, ENABLED, DISABLEDREASON, 
+			LOGINIP, LOGINCOMPUTER, LOGINTIME) 
+		VALUES (
+			#{uid}, #{name}, #{pwd}, #{nicName}, #{photo}, #{gender}, 
+			#{birth}, #{isLunar}, #{phone}, #{email}, #{zipCode}, #{zipSeq}, 
+			#{address}, #{defaultRole}, #{regIP}, #{regEnv}, 
+			#{pwdModifyKey}, #{regAdmin}, #{guid}, #{enabled}, #{disabledReason}, 
+			#{loginIP}, #{loginComputer}, #{loginTime})
+	</insert>
+
+</mapper>

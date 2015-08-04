@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	 <beans:bean 
+		id="NewlecAuthenticationSuccessHandler" 
+		class="com.newlecture.web.controller.NewlecAuthenticationSuccessHandler"/>
+ 
+	<http>
+	<form-login 
+		login-page= "/joinus/login"
+		default-target-url="/Customer/notice"		
+ 		authentication-success-handler-ref="NewlecAuthenticationSuccessHandler"/>	
+		<!-- 로그인한후조치 -->
+<logout logout-success-url="/Customer/notice"/>
+	<intercept-url pattern="/Customer/noticeDetail" access="ROLE_USER"/>
+	<intercept-url pattern="/Customer/noticeReg" access="ROLE_ADMIN"/>	
+	</http>
+	<authentication-manager>
+	<authentication-provider>
+	<jdbc-user-service
+	data-source-ref="dataSource"
+	users-by-username-query="
+		SELECT UID USERID, PWD PASSWORD, 1 ENABLED
+		FROM MEMBERS
+		WHERE UID=? "
+		
+	authorities-by-username-query="
+		SELECT MemberUid USERID, RoleName AUTHORITIES
+		FROM MemberRoles
+		WHERE MemberUID=? "
+	/>
+		<!-- <user-service>
+		<user name ="newlec" password="111" authorities="ROLE_USER, ROLE_ADMIN"/>
+		<user name ="dragon" password="111" authorities="ROLE_USER"/> 
+		</user-service> -->
+		
+	</authentication-provider>
+	</authentication-manager>
+	
+</beans:beans>

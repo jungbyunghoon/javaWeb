@@ -1,0 +1,73 @@
+@CHARSET "UTF-8";
+
+
+#header {
+	height: 70px;
+}
+
+#visual {
+	height: 171px;
+	border-top: 3px solid #8C8A34;
+	/* background: #313131 url("../images/bg-visual.png") no-repeat center; */
+}
+
+#aside {
+	height: inherit;
+	width: 205px;
+	float: left;
+}
+
+#main {
+	height: inherit;
+	width: 755px;
+	float: left;
+}
+#body{
+	min-height: 300px;
+	border-top: 5px solid #8C8A34;
+	margin-top: 1px;
+}
+
+#body .content-wrapper {
+	background:url("../images/bg-body.png") repeat-y center;
+}
+
+#footer {
+	height: 100px;
+	background: #313131;
+}
+
+.content-wrapper {
+	height: 100%;
+	width: 960px;
+	min-height: inherit;
+	margin-left: auto;
+	margin-right: auto;
+
+	/* 		opacity:0.6; */
+}
+/* 고정방 만들기 */
+#quick-menu {
+	height: 10px;
+	width: 100%;
+	position: fixed;
+	/* 적재되는 위치 fixed는 스크롤 변화에도 그 위치에 계속 고정 absolute는 px에 고정*/
+	bottom: 0px;
+}
+
+#quick-menu:HOVER {
+	height: 70px;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden; /* 안보이게됌 */
+	line-height: 0;
+	height: 0;
+}
+
+#visual .content-wrapper{
+/* 	background: url("../images/visual.png") no-repeat center;
+ */}

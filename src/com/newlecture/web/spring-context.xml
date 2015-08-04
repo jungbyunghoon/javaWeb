@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context ="http://www.springframework.org/schema/context" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<context:annotation-config/>
+	<!-- services -->
+
+	<!-- NoticeDao noticeDao = new MyBatisNoticeDao(); NoticeConsole console 
+		= new NoticeConsole(); console.setNoticeDao(noticeDao); -->
+		
+	<bean id="noticeDao1" class="com.newlecture.web.HiNoticeDao"></bean>
+	<bean id="noticeDao2" class="com.newlecture.web.HiNoticeDao"></bean>
+	<bean id="console" class="com.newlecture.web.NoticeConsole"></bean>
+		
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxUploadSize" value="10000000"></property>
+	
+	
+	
+	
+	</bean>
+		<!-- <property name="noticeDao" ref="noticeDao"/> -->
+		<!-- name은 실제 속성이 아니고 setter명(setNoticeDao)이다. ref는 위에 noticeDao이다. -->
+
+	<!-- more bean definitions for services go here -->
+</beans>
